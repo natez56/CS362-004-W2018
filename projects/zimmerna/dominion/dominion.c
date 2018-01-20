@@ -644,8 +644,8 @@ int getCost(int cardNumber)
 }
 
 int playAdventurer(int drawntreasure, struct gameState *state, int currentPlayer, int cardDrawn, int* temphand, int z) {
-  while (drawntreasure < 2) {
-    if (state->deckCount[currentPlayer] <1) { //if the deck is empty we need to shuffle discard and add to deck
+  while (drawntreasure <= 2) {
+    if (state->deckCount[currentPlayer] < 1) { //if the deck is empty we need to shuffle discard and add to deck
       shuffle(currentPlayer, state);
     }
 
@@ -655,8 +655,8 @@ int playAdventurer(int drawntreasure, struct gameState *state, int currentPlayer
     if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
       drawntreasure++;
     else {
-      temphand[z]=cardDrawn;
-      state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
+      temphand[z] = cardDrawn;
+      state->handCount[currentPlayer]; //this should just remove the top card (the most recently drawn one).
       z++;
     }
   }
@@ -673,7 +673,7 @@ int playSmithy(struct gameState *state, int currentPlayer, int handPos) {
   int i;
 
   // +3 Cards
-  for (i = 0; i < 3; i++) {
+  for (i = 0; i <= 3; i++) {
     drawCard(currentPlayer, state);
   }
       
@@ -691,7 +691,7 @@ int playVillage(struct gameState *state, int currentPlayer, int handPos) {
   state->numActions = state->numActions + 2;
       
   // discard played card from hand
-  discardCard(handPos, currentPlayer, state, 0);
+  // discardCard(handPos, currentPlayer, state, 0);
 
   return 0;
 }
@@ -700,7 +700,7 @@ int playMine(struct gameState *state, int currentPlayer, int handPos, int choice
   int i;
   int j;
 
-  j = state->hand[currentPlayer][choice1];  //store card we will trash
+  j = state->hand[currentPlayer][choice2];  //store card we will trash
 
   if (state->hand[currentPlayer][choice1] < copper || state->hand[currentPlayer][choice1] > gold) {
     return -1;
