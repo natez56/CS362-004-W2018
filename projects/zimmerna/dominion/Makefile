@@ -1,4 +1,6 @@
 CFLAGS = -Wall -fpic -coverage -lm
+TESTPROJ = unittest1 unittest2 unittest3 unittest4
+TESTPROJ += cardtest1 cardtest2 cardtest3 cardtest4
 
 rngs.o: rngs.h rngs.c
 	gcc -c rngs.c -g  $(CFLAGS)
@@ -18,32 +20,81 @@ badTestDrawCard: badTestDrawCard.c dominion.o rngs.o
 testBuyCard: testDrawCard.c dominion.o rngs.o
 	gcc -o testDrawCard -g  testDrawCard.c dominion.o rngs.o $(CFLAGS)
 
+unittestresults.out: unittest1.c unittest2.c unittest3.c unittest4.c cardtest1.c cardtest2.c cardtest3.c cardtest4.c dominion.o
+	echo "unittest1.c:" >> unittestresults.out
+	gcc -o unittest1 unittest1.c -g  dominion.o rngs.o $(CFLAGS)
+	./unittest1 >> unittestresults.out
+	echo "isGameOver() test coverage:" >> unittestresults.out
+	gcov -abcfu dominion.c | sed -n '/isGameOver/{n;p; n;p; n;p; n;p}' >> unittestresults.out
+
+	echo "unittest2.c:" >> unittestresults.out
+	gcc -o unittest2 unittest2.c -g  dominion.o rngs.o $(CFLAGS)
+	./unittest2 >> unittestresults.out
+	echo "discardCard() test coverage:" >> unittestresults.out
+	gcov -abcfu dominion.c | sed -n '/discardCard/{n;p; n;p; n;p; n;p}' >> unittestresults.out
+
+	echo "unittest3.c:" >> unittestresults.out
+	gcc -o unittest3 unittest3.c -g  dominion.o rngs.o $(CFLAGS)
+	./unittest3 >> unittestresults.out
+	echo "fullDeckCount() test coverage:" >> unittestresults.out
+	gcov -abcfu dominion.c | sed -n '/fullDeckCount/{n;p; n;p; n;p; n;p}' >> unittestresults.out
+
+	echo "unittest4.c:" >> unittestresults.out
+	gcc -o unittest4 unittest4.c -g  dominion.o rngs.o $(CFLAGS)
+	./unittest4 >> unittestresults.out
+	echo "gainCard() test coverage:" >> unittestresults.out
+	gcov -abcfu dominion.c | sed -n '/gainCard/{n;p; n;p; n;p; n;p}' >> unittestresults.out
+
+	echo "cardtest1.c:" >> unittestresults.out
+	gcc -o cardtest1 cardtest1.c -g  dominion.o rngs.o $(CFLAGS)
+	./cardtest1 >> unittestresults.out
+	echo "playSmithy() test coverage:" >> unittestresults.out
+	gcov -abcfu dominion.c | sed -n '/playSmithy/{n;p; n;p; n;p; n;p}' >> unittestresults.out
+
+	echo "cardtest2.c:" >> unittestresults.out
+	gcc -o cardtest2 cardtest2.c -g  dominion.o rngs.o $(CFLAGS)
+	./cardtest2 >> unittestresults.out
+	echo "playAdventurer() test coverage:" >> unittestresults.out
+	gcov -abcfu dominion.c | sed -n '/playAdventurer/{n;p; n;p; n;p; n;p}' >> unittestresults.out
+
+	echo "cardtest3.c:" >> unittestresults.out
+	gcc -o cardtest3 cardtest3.c -g  dominion.o rngs.o $(CFLAGS)
+	./cardtest3 >> unittestresults.out
+	echo "playVillage() test coverage:" >> unittestresults.out
+	gcov -abcfu dominion.c | sed -n '/playVillage/{n;p; n;p; n;p; n;p}' >> unittestresults.out
+
+	echo "cardtest4.c:" >> unittestresults.out
+	gcc -o cardtest4 cardtest4.c -g  dominion.o rngs.o $(CFLAGS)
+	./cardtest4 >> unittestresults.out
+	echo "playMine() test coverage:" >> unittestresults.out
+	gcov -abcfu dominion.c | sed -n '/playMine/{n;p; n;p; n;p; n;p}' >> unittestresults.out
+
 testAll: dominion.o testSuite.c
 	gcc -o testSuite testSuite.c -g  dominion.o rngs.o $(CFLAGS)
 
-test1: dominion.o unittest1.c
-	gcc -o test1 unittest1.c -g  dominion.o rngs.o $(CFLAGS)
+unittest1: dominion.o unittest1.c
+	gcc -o unittest1 unittest1.c -g  dominion.o rngs.o $(CFLAGS)
 
-test2: dominion.o unittest2.c
-	gcc -o test2 unittest2.c -g  dominion.o rngs.o $(CFLAGS)
+unittest2: dominion.o unittest2.c
+	gcc -o unittest2 unittest2.c -g  dominion.o rngs.o $(CFLAGS)
 
-test3: dominion.o unittest3.c
-	gcc -o test3 unittest3.c -g  dominion.o rngs.o $(CFLAGS)
+unittest3: dominion.o unittest3.c
+	gcc -o unittest3 unittest3.c -g  dominion.o rngs.o $(CFLAGS)
 
-test4: dominion.o unittest4.c
-	gcc -o test4 unittest4.c -g  dominion.o rngs.o $(CFLAGS)
+unittest4: dominion.o unittest4.c
+	gcc -o unittest4 unittest4.c -g  dominion.o rngs.o $(CFLAGS)
 
-ctest1: dominion.o cardtest1.c
-	gcc -o ctest1 cardtest1.c -g  dominion.o rngs.o $(CFLAGS)
+cardtest1: dominion.o cardtest1.c
+	gcc -o cardtest1 cardtest1.c -g  dominion.o rngs.o $(CFLAGS)
 
-ctest2: dominion.o cardtest2.c
-	gcc -o ctest2 cardtest2.c -g  dominion.o rngs.o $(CFLAGS)
+cardtest2: dominion.o cardtest2.c
+	gcc -o cardtest2 cardtest2.c -g  dominion.o rngs.o $(CFLAGS)
 
-ctest3: dominion.o cardtest3.c
-	gcc -o ctest3 cardtest3.c -g  dominion.o rngs.o $(CFLAGS)
+cardtest3: dominion.o cardtest3.c
+	gcc -o cardtest3 cardtest3.c -g  dominion.o rngs.o $(CFLAGS)
 
-ctest4: dominion.o cardtest4.c
-	gcc -o ctest4 cardtest4.c -g  dominion.o rngs.o $(CFLAGS)
+cardtest4: dominion.o cardtest4.c
+	gcc -o cardtest4 cardtest4.c -g  dominion.o rngs.o $(CFLAGS)
 
 student: dominion.o testUpdateCoins.c
 	gcc -o student testUpdateCoins.c -g  dominion.o rngs.o $(CFLAGS)
@@ -56,11 +107,10 @@ runtests: testDrawCard
 	gcov dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
 
-
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
 clean:
-	rm -f *.o playdom.exe test1 test2 test3 test4 ctest1 ctest2 ctest3 ctest4 playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe
+	rm -f *.o playdom.exe $(TESTPROJ) playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe

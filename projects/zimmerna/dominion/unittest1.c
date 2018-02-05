@@ -1,10 +1,10 @@
 /*********************************************************************
-** Program name: unittest1.c
+** Program name: unittest1
 ** Author: Nathan Zimmerman
 ** Date: 02/04/2018
-** Description: 
- What the program does: 
-how to run it:
+** Description: Unit test for isGameOver() function.
+how to run it: make unittestresults.out or make unittest1 and then
+./unittest1
 *********************************************************************/
 
 #include "dominion.h"
@@ -12,10 +12,24 @@ how to run it:
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
+
+#define COLORED_OUTPUT 0
+
 #define RED     "\x1b[31m"
 #define GREEN   "\x1b[32m"
 #define YELLOW  "\x1B[33m"
 #define RESET   "\x1b[0m"
+
+#if COLORED_OUTPUT == 0
+#undef RED
+#undef GREEN
+#undef YELLOW
+#undef RESET
+#define RED     ""
+#define GREEN   ""
+#define YELLOW  ""
+#define RESET   ""
+#endif
 
 void assertTest(int testCase) {
   if (testCase) {
@@ -26,43 +40,27 @@ void assertTest(int testCase) {
 }
 
 int main() {
-	/*
-		Test list
-		1) Province supply is empty
-		2) Any three supply piles are empty
-    3) Players turn is over
-    4) Test supply count
-	*/
-  /*
-  Province boundary cases
-  Pr = 0
-  Pr > 1
-  Pr = 8, 12
-
-  Player boundary cases
-  P = 1, 2, 3
-  P = 3
-  */
-  
   int seed = 1000;
   int numPlayers;
   int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, 
-               village, baron, great_hall};
-  
+               village, baron, great_hall}; 
   struct gameState game, testGame;
   int gameOverVal;
 
   printf("-- Testing isGameOver() -- \n");
   printf("Province card pile size check.\n\n");
 
+  // Test for instances where players > 2 and total pile counts are increased.
   for (numPlayers = 2; numPlayers < 4; numPlayers++) {
     printf("-- Number of players = %d --\n", numPlayers);
 
     int i;
     for (i = 0; i < 3; i++) {
+      // Clear game state and initialize new game.
       memset(&game, 23, sizeof(struct gameState));
       initializeGame(numPlayers, k, seed, &game);
 
+      // Manually simulate correct behavior.
       if (i < 2) {
         game.supplyCount[province] = i;
       }
@@ -75,14 +73,17 @@ int main() {
         gameOverVal = 0;
       }
 
+      printf("\n");
+
       printf(YELLOW "Testing province pile size: %d\n" RESET, game.supplyCount[province]);
 
-      // Test game over value
+      // Test game over value for varying province piles sizes by comparing
+      // simulated return values with game state of function call.
       int testGameOverVal = isGameOver(&testGame);
       printf("Game over code: %d, Expected: %d. ", gameOverVal, testGameOverVal);
       assertTest(testGameOverVal == gameOverVal);
 
-      // Test game state is not changed
+      // Test that game state is not changed due to function call.
       printf("Test other areas of game state remain the same: ");
       assertTest(memcmp(&game, &testGame, sizeof(struct gameState)) == 0);
     }
@@ -90,54 +91,38 @@ int main() {
     int testGameOverVal;
     int gameOverVal = 0;
 
+    // Clear and re-initialize game state.
     memset(&game, 23, sizeof(struct gameState));
     initializeGame(numPlayers, k, seed, &game);
 
+    // Test supply count trigger by simulating 1, 2, and then 3 empty supplies.
     for (i = 0; i < 3; i++) {
       if (i > 1) {
         gameOverVal = 1;
       }
 
       game.supplyCount[i] = 0;
+
       memcpy(&testGame, &game, sizeof(struct gameState));
+   
       testGameOverVal = isGameOver(&testGame);
+
+      printf("\n");
+
       printf(YELLOW "Test %d supply pile empty.\n" RESET, i + 1);
+
+      // Compare game state after function call with what should be the correct
+      // return value.
       printf("Game over code: %d, Expected: %d.  ", testGameOverVal, gameOverVal);
       assertTest(testGameOverVal == gameOverVal);
+
+      // Test to ensure function call does not alter other areas of game state.
       printf("Test other areas of game state remain the same: ");
       assertTest(memcmp(&game, &testGame, sizeof(struct gameState)) == 0);
     }
-
     printf("\n");
+
   }
 
   return 0;
 }
-
-/*int isGameOver(struct gameState *state) {
-  int i;
-  int j;
-	
-  //if stack of Province cards is empty, the game ends
-  if (state->supplyCount[province] == 0)
-    {
-      return 1;
-    }
-
-  //if three supply pile are at 0, the game ends
-  j = 0;
-  for (i = 0; i < 25; i++)
-    {
-      if (state->supplyCount[i] == 0)
-	{
-	  j++;
-	}
-    }
-  if ( j >= 3)
-    {
-      return 1;
-    }
-
-  return 0;
-}
-*/
