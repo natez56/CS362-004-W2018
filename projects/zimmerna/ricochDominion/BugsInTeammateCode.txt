@@ -1,0 +1,88 @@
+Bug-Reports
+Bug # 1
+Title:   Error adventurerEffect(): No treasure cards drawn. 
+ID: 001
+Severity: Moderate to high.  The adventurer card is a core card of the game.  Whenever the adventurer card is played it will alter the outcome of the game so that the result will be incorrect.  Given that the bug occurs every time the card is played, both the risk of the bug occurring, and the impact of the bug is moderately high.  If the adventure card is not chosen as one of the kingdom cards, then the game is not affected.
+Priority: High.  The bug should be fixed soon since it affects a core component of the game.  It is important that the bug is fixed soon, because the chance of it occurring and altering the outcome of a game are high.
+Date:  03/04/2018         
+Reported By:   Nathan Zimmerman
+Email:  zimmerna@oregonstate.edu
+Product: CS362-004-W2018/projects/ricoch/dominion                       Version: ricoch-assignment-2 branch
+Platform:  GNU bash                     Version: 4.3.11(1)-release
+Is it reproducible: Yes, every time the adventurerEffect() function is called.
+
+Description
+Summary: Treasure cards not drawn when unit test and random test executed for the adventurerEffect() function.
+Symptom/Cause: In two separate unit tests for the adventurerEffect function, the number of treasure cards drawn was incorrect.  Specifications for the function indicate that cards should be drawn until two treasure cards are found.  Running two custom test cases with a deck containing two treasure cards reveals that no treasure cards are being drawn.  Custom test cases call the function cardEffect(adventurer, -1, -1, -1, &game, handPos, &bonus).  A random test of the adveurerEffect() function reveals that in all randomly created decks the number of cards being drawn is too low.  Using randomtestadventurer.c with a seed of 1 yields the incorrect results.  Note that the random test generates a correct game state and deck with a minimum of 3 treasures.
+Supporting Information: Error happens each time the unit tests and random test is ran.
+
+Steps to Produce/Reproduce
+Calling the function cardEffect with these parameters produces the error.  Code taken from cardtest2.c.
+int seed = 1000;
+int numPlayers = 2;
+int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, 
+               village, baron, great_hall};
+int bonus = 0;
+int handPos = 0;
+int testDeck[6] = {feast, gold, copper, adventurer, feast, silver};
+struct gameState game, testGame, preTestGame;
+memset(&game, 23, sizeof(struct gameState));
+initializeGame(numPlayers, k, seed, &game);
+game.handCount[player] = 0;
+game.deckCount[player] = 6;
+for (i = 0; i < testDeckSize; i++) {
+    game.deck[player][i] = testDeck[i];
+  }
+cardEffect(adventurer, -1, -1, -1, &game, handPos, &bonus);
+
+Expected Results
+Test #1: 4 cards drawn
+Test #2: 2 cards drawn
+Initial hand composition is set up in the test so that it will take four cards until two treasure cards have been drawn.  Test 2 incorporates the shuffle effect.  Two cards are expected to be drawn before a two treasure cards are drawn in test 2.
+
+Actual Results
+Test #1: 0 cards drawn
+Test #2: 0 cards drawn
+For both tests zero cards are drawn.  Given that the decks used in testing are not empty, cards should have been drawn.  Tests seem to indicate that there is a problem with the function drawing cards.
+
+Bug # 2
+Title:   Error smithyEffect() 4 cards drawn instead of 3.
+ID: 002
+Severity: Moderate to high.  The smithy is a core card to the game.  Any time the card is played the outcome of the game will be affected.  The game can still be played as long as this card is not chosen as a kingdom card and played.
+Priority: High.  Since the smithy is a core card to the game the priority for fixing this bug should be high.
+Date: 03/04/2018           
+Reported By:   Nathan Zimmerman
+Email: zimmerna@oregonstate.edu
+Product: CS362-004-W2018/projects/ricoch/dominion                        Version: ricoch-assignment-2 branch
+Platform:  GNU bash                     Version: 4.3.11(1)-release
+Is it reproducible: Yes, every time the smithyEffect() function is called.
+
+Description
+Summary: smithyEffect() function causes player to draw 4 cards instead of 3.
+What happened: In both a unit test and random tests for the smithyEffect() function, the player draws 4 cards instead of 3.  The unit test produces the bug by initializing the game with 2 players and calling the cardEffect() with the smithy as a parameter.  Results are compared to simulated results where 3 cards are drawn.  Random tests found in randomtestcard1.c indicate that the players hand size is to high.  Tests also indicate that the smithy card was correctly discarded.  Using a seed of 1 with the random tests will yield the incorrect result.
+Supporting Information: Error happens each time the unit tests and random test is ran.
+
+Steps to Produce/Reproduce
+Calling the function cardEffect with these variables produces the error.  Code taken from cardtest1.c
+int seed = 1000;
+int numPlayers = 2;
+int player2HandSize = 5;
+int cardsDrawn;
+int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, 
+               village, baron, great_hall};
+int bonus = 0;
+int handPos = 0; 
+struct gameState game;
+memset(&game, 23, sizeof(struct gameState));
+initializeGame(numPlayers, k, seed, &game);
+cardEffect(smithy, -1, -1, -1, &game, handPos, &bonus);
+
+Expected Results
+Hand count = 7
+Deck Count = 2
+Initial hand size of 5, plus 3 cards drawn, minus the smithy card that is discarded, should yield 7 cards.  If only 3 cards are drawn the final deck size should be 2.  Card specifications state that the smithy card should draw 3 cards from deck.
+
+Actual Results
+Hand Count = 8
+Deck Count = 1
+Hand count is showing that one to many cards was drawn from the deck.  An initial hand size of 5 would indicate that the player should end up with 7 cards after the played smithy card is discarded.  Tests show that the smithy card is being discarded correctly.  This would indicate that the player has drawn one to many cards.

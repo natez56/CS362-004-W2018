@@ -1,0 +1,39 @@
+randomtestadventurer.c:
+Errors given deck shuffled.
+Num errors where hand size is too high: 0
+Num errors where hand size is too low: 1
+Num errors where deck size is too high: 0
+Num errors where deck size is too low: 1
+Num errors where discard pile size is too high: 1
+Num errors where discard pile size is too low: 0
+Num errors where hand treasure count different than expected: 1
+Num errors where deck treasure count different than expected: 1
+Num errors where discard pile treasure count different than expected: 1
+Num Errors where other players game state is incorrectly changed: 0
+Num errors, victory card pile changed: 0
+Num errors, supply pile changed: 0
+
+Errors occuring given deck not shuffled.
+Num errors where hand size is too high: 0
+Num errors where hand size is too low: 9999
+Num errors where deck size is too high: 9999
+Num errors where deck size is too low: 0
+Num errors where discard pile size is too high: 0
+Num errors where discard pile size is too low: 9389
+Num errors where hand treasure count different than expected: 9999
+Num errors where deck treasure count different than expected: 9999
+Num errors where discard pile treasure count different than expected: 0
+Num Errors where other players game state is incorrectly changed: 0
+Num errors, victory card pile changed: 0
+Num errors, supply pile changed: 0
+
+dominion.c global coverage:
+File 'dominion.c'
+Lines executed:36.94% of 563
+Creating 'dominion.c.gcov'
+
+playAdventurer() dominion.c function coverage:
+Lines executed:31.25% of 16
+No branches
+No calls
+

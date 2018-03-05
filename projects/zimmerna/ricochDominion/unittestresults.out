@@ -1,0 +1,524 @@
+unittest1.c:
+-- Testing isGameOver() -- 
+Province card pile size check.
+
+-- Number of players = 2 --
+
+Testing province pile size: 0
+Game over code: 1, Expected: 1. PASS
+Test other areas of game state remain the same: PASS
+
+Testing province pile size: 1
+Game over code: 0, Expected: 0. PASS
+Test other areas of game state remain the same: PASS
+
+Testing province pile size: 8
+Game over code: 0, Expected: 0. PASS
+Test other areas of game state remain the same: PASS
+
+Test 1 supply pile empty.
+Game over code: 0, Expected: 0.  PASS
+Test other areas of game state remain the same: PASS
+
+Test 2 supply pile empty.
+Game over code: 0, Expected: 0.  PASS
+Test other areas of game state remain the same: PASS
+
+Test 3 supply pile empty.
+Game over code: 1, Expected: 1.  PASS
+Test other areas of game state remain the same: PASS
+
+-- Number of players = 3 --
+
+Testing province pile size: 0
+Game over code: 1, Expected: 1. PASS
+Test other areas of game state remain the same: PASS
+
+Testing province pile size: 1
+Game over code: 0, Expected: 0. PASS
+Test other areas of game state remain the same: PASS
+
+Testing province pile size: 12
+Game over code: 0, Expected: 0. PASS
+Test other areas of game state remain the same: PASS
+
+Test 1 supply pile empty.
+Game over code: 0, Expected: 0.  PASS
+Test other areas of game state remain the same: PASS
+
+Test 2 supply pile empty.
+Game over code: 0, Expected: 0.  PASS
+Test other areas of game state remain the same: PASS
+
+Test 3 supply pile empty.
+Game over code: 1, Expected: 1.  PASS
+Test other areas of game state remain the same: PASS
+
+dominion.c test coverage:
+File 'dominion.c'
+Lines executed:26.64% of 563
+Creating 'dominion.c.gcov'
+
+isGameOver() dominion.c function coverage:
+Lines executed:100.00% of 10
+No branches
+No calls
+
+unittest2.c:
+-- Testing discardCard() -- 
+
+-- Number of players = 2 --
+Test trash flag = 0
+Played card count = 1, Expected: 1. PASS
+Card added to played pile = 4, Expected: 4. PASS
+Test other areas of game state remain the same: PASS
+Test trash flag = 0
+Played card count = 0, Expected: 0. PASS
+Test other areas of game state remain the same: PASS
+
+-- Test hand position --
+Test 1 card in hand. 
+Hand count = 0, Expected: 0. PASS
+Card added to played pile = 4, Expected: 4. PASS
+New hand position value = -1, Expected: -1. PASS
+Test other areas of game state remain the same: PASS
+
+Test position 0 played with 2 cards in hand.
+Hand count = 1, Expected: 1. PASS
+Card added to played pile = 4, Expected: 4. PASS
+New hand position value = 4, Expected: 4. PASS
+Test other areas of game state remain the same: PASS
+
+Test position 499 played with 500 cards in hand. 
+Hand count = 499, Expected: 499. PASS
+Card added to played pile = 499, Expected: 499. PASS
+New hand position value = -1, Expected: -1. PASS
+Test other areas of game state remain the same: PASS
+
+-- Test played card added to the discard pile. --
+Card on top of discard pile = 387389207, Expected = 499. FAIL
+
+Testing no state change has occured for other player
+Hand for player 2 remains the same: PASS
+Deck for player 2 remains the same: PASS
+Discard pile for player 2 remains the same: PASS
+
+Testing no state change has occured to victory card piles. 
+Estate pile count = 8, Expected = 8. PASS
+Duchy pile count = 8, Expected = 8. PASS
+Province pile count = 8, Expected = 8. PASS
+
+Testing no state change has occured to kingdom card piles. 
+Number of card number 7 = 10, Expected = 10. PASS
+Number of card number 8 = 10, Expected = 10. PASS
+Number of card number 9 = 10, Expected = 10. PASS
+Number of card number 10 = 8, Expected = 8. PASS
+Number of card number 11 = 10, Expected = 10. PASS
+Number of card number 12 = 10, Expected = 10. PASS
+Number of card number 13 = 10, Expected = 10. PASS
+Number of card number 14 = 10, Expected = 10. PASS
+Number of card number 15 = 10, Expected = 10. PASS
+Number of card number 16 = 8, Expected = 8. PASS
+
+-- Number of players = 3 --
+Test trash flag = 10
+Played card count = 1, Expected: 1. PASS
+Card added to played pile = 4, Expected: 4. PASS
+Test other areas of game state remain the same: PASS
+Test trash flag = 10
+Played card count = 0, Expected: 0. PASS
+Test other areas of game state remain the same: PASS
+
+-- Test hand position --
+Test 1 card in hand. 
+Hand count = 0, Expected: 0. PASS
+Card added to played pile = 4, Expected: 4. PASS
+New hand position value = -1, Expected: -1. PASS
+Test other areas of game state remain the same: PASS
+
+Test position 0 played with 2 cards in hand.
+Hand count = 1, Expected: 1. PASS
+Card added to played pile = 4, Expected: 4. PASS
+New hand position value = 4, Expected: 4. PASS
+Test other areas of game state remain the same: PASS
+
+Test position 499 played with 500 cards in hand. 
+Hand count = 499, Expected: 499. PASS
+Card added to played pile = 499, Expected: 499. PASS
+New hand position value = -1, Expected: -1. PASS
+Test other areas of game state remain the same: PASS
+
+-- Test played card added to the discard pile. --
+Card on top of discard pile = 387389207, Expected = 499. FAIL
+
+Testing no state change has occured for other player
+Hand for player 2 remains the same: PASS
+Deck for player 2 remains the same: PASS
+Discard pile for player 2 remains the same: PASS
+
+Testing no state change has occured to victory card piles. 
+Estate pile count = 12, Expected = 12. PASS
+Duchy pile count = 12, Expected = 12. PASS
+Province pile count = 12, Expected = 12. PASS
+
+Testing no state change has occured to kingdom card piles. 
+Number of card number 7 = 10, Expected = 10. PASS
+Number of card number 8 = 10, Expected = 10. PASS
+Number of card number 9 = 10, Expected = 10. PASS
+Number of card number 10 = 12, Expected = 12. PASS
+Number of card number 11 = 10, Expected = 10. PASS
+Number of card number 12 = 10, Expected = 10. PASS
+Number of card number 13 = 10, Expected = 10. PASS
+Number of card number 14 = 10, Expected = 10. PASS
+Number of card number 15 = 10, Expected = 10. PASS
+Number of card number 16 = 12, Expected = 12. PASS
+
+dominion.c global coverage:
+File 'dominion.c'
+Lines executed:27.00% of 563
+Creating 'dominion.c.gcov'
+
+discardCard() dominion.c function coverage:
+Lines executed:100.00% of 13
+No branches
+No calls
+
+unittest3.c:
+-- Testing fullDeckCount() -- 
+
+-- Player = 0 --
+Test card not in deck.
+Deck count: 0, Expected: 0. PASS
+
+Test card in hand.
+Card count: 1, Expected: 1. PASS
+
+Test card in deck.
+Card count: 1, Expected: 1. PASS
+
+Test card in discard.
+Card count: 1, Expected: 1. PASS
+
+Testing no state change has occured for other player
+Hand for player 1 remains the same: PASS
+Deck for player 1 remains the same: PASS
+Discard pile for player 1 remains the same: PASS
+
+Testing no state change has occured to victory card piles. 
+Estate pile count = 8, Expected = 8. PASS
+Duchy pile count = 8, Expected = 8. PASS
+Province pile count = 8, Expected = 8. PASS
+
+Testing no state change has occured to kingdom card piles. 
+Number of card number 7 = 10, Expected = 10. PASS
+Number of card number 8 = 10, Expected = 10. PASS
+Number of card number 9 = 10, Expected = 10. PASS
+Number of card number 10 = 8, Expected = 8. PASS
+Number of card number 11 = 10, Expected = 10. PASS
+Number of card number 12 = 10, Expected = 10. PASS
+Number of card number 13 = 10, Expected = 10. PASS
+Number of card number 14 = 10, Expected = 10. PASS
+Number of card number 15 = 10, Expected = 10. PASS
+Number of card number 16 = 8, Expected = 8. PASS
+
+-- Player = 1 --
+Test card not in deck.
+Deck count: 0, Expected: 0. PASS
+
+Test card in hand.
+Card count: 1, Expected: 1. PASS
+
+Test card in deck.
+Card count: 1, Expected: 1. PASS
+
+Test card in discard.
+Card count: 1, Expected: 1. PASS
+
+Testing no state change has occured for other player
+Hand for player 0 remains the same: PASS
+Deck for player 0 remains the same: PASS
+Discard pile for player 0 remains the same: PASS
+
+Testing no state change has occured to victory card piles. 
+Estate pile count = 8, Expected = 8. PASS
+Duchy pile count = 8, Expected = 8. PASS
+Province pile count = 8, Expected = 8. PASS
+
+Testing no state change has occured to kingdom card piles. 
+Number of card number 7 = 10, Expected = 10. PASS
+Number of card number 8 = 10, Expected = 10. PASS
+Number of card number 9 = 10, Expected = 10. PASS
+Number of card number 10 = 8, Expected = 8. PASS
+Number of card number 11 = 10, Expected = 10. PASS
+Number of card number 12 = 10, Expected = 10. PASS
+Number of card number 13 = 10, Expected = 10. PASS
+Number of card number 14 = 10, Expected = 10. PASS
+Number of card number 15 = 10, Expected = 10. PASS
+Number of card number 16 = 8, Expected = 8. PASS
+
+dominion.c global coverage:
+File 'dominion.c'
+Lines executed:28.60% of 563
+Creating 'dominion.c.gcov'
+
+fullDeckCount() dominion.c function coverage:
+Lines executed:100.00% of 9
+No branches
+No calls
+
+unittest4.c:
+-- Testing gainCard() -- 
+
+Testing supply for card is empty.
+Function return value = -1, Expected = -1. PASS
+
+Testing gained card goes to deck.
+Card added to deck = 1, Expected = 1. PASS
+
+Testing gained card goes to hand.
+Card added to hand = 1, Expected = 1. PASS
+
+Testing gained card goes to discard.
+Card added to discard pile = 1, Expected = 1. PASS
+
+Testing supply count updated.
+Supply count = 7, Expected = 7. PASS
+
+Testing no state change has occured for other player
+Hand for player 2 remains the same: PASS
+Deck for player 2 remains the same: PASS
+Discard pile for player 2 remains the same: PASS
+
+Testing no state change has occured to victory card piles. 
+Estate pile count = 7, Expected = 7. PASS
+Duchy pile count = 8, Expected = 8. PASS
+Province pile count = 8, Expected = 8. PASS
+
+Testing no state change has occured to kingdom card piles. 
+Number of card number 7 = 10, Expected = 10. PASS
+Number of card number 8 = 10, Expected = 10. PASS
+Number of card number 9 = 10, Expected = 10. PASS
+Number of card number 10 = 8, Expected = 8. PASS
+Number of card number 11 = 10, Expected = 10. PASS
+Number of card number 12 = 10, Expected = 10. PASS
+Number of card number 13 = 10, Expected = 10. PASS
+Number of card number 14 = 10, Expected = 10. PASS
+Number of card number 15 = 10, Expected = 10. PASS
+Number of card number 16 = 8, Expected = 8. PASS
+
+dominion.c global coverage:
+File 'dominion.c'
+Lines executed:31.26% of 563
+Creating 'dominion.c.gcov'
+
+gainCard() dominion.c function coverage:
+Lines executed:100.00% of 13
+No branches
+No calls
+
+cardtest1.c:
+-- Testing smithy -- 
+
+Testing player receives three cards.
+Hand count = 8, Expected = 7. FAIL
+Deck count = 1, Expected = 2. FAIL
+
+Testing cards have come from players own pile.
+Deck count = 1, Expected = 1. PASS
+
+Testing player calls discardCard on smithy card after use.
+Top played card value = 4, Expected = 4. PASS
+
+Testing no state change has occured for other player
+Hand for player 2 remains the same: PASS
+Deck for player 2 remains the same: PASS
+Discard pile for player 2 remains the same: PASS
+
+Testing no state change has occured to victory card piles. 
+Estate pile count = 8, Expected = 8. PASS
+Duchy pile count = 8, Expected = 8. PASS
+Province pile count = 8, Expected = 8. PASS
+
+Testing no state change has occured to kingdom card piles. 
+Number of card number 7 = 10, Expected = 10. PASS
+Number of card number 8 = 10, Expected = 10. PASS
+Number of card number 9 = 10, Expected = 10. PASS
+Number of card number 10 = 8, Expected = 8. PASS
+Number of card number 11 = 10, Expected = 10. PASS
+Number of card number 12 = 10, Expected = 10. PASS
+Number of card number 13 = 10, Expected = 10. PASS
+Number of card number 14 = 10, Expected = 10. PASS
+Number of card number 15 = 10, Expected = 10. PASS
+Number of card number 16 = 8, Expected = 8. PASS
+
+dominion.c global coverage:
+File 'dominion.c'
+Lines executed:31.26% of 563
+Creating 'dominion.c.gcov'
+
+playSmithy() dominion.c function coverage:
+Lines executed:100.00% of 6
+No branches
+No calls
+
+cardtest2.c:
+-- Testing adventurer -- 
+
+Testing player draws until 2 treasures no shuffle.
+Number of drawn cards = 0, Expected = 4. FAIL
+Number of treasures drawn = 0, Expected = 2. FAIL
+
+Testing player draws until 2 treasures with shuffle.
+Number of treasures drawn = 0, Expected = 2. FAIL
+
+Testing player discards non-treasure cards from hand.
+Number of cards in hand = 1, Expected = 2. FAIL
+
+Testing drawn cards come from player's own pile.
+Deck count = 6, Expected = 6. PASS
+
+Testing player calls discardCard on adventurer card after use.
+Top played card value = 387389207, Expected = 4. FAIL
+
+Testing no state change for other players.
+Hand for player 2 remains the same: PASS
+Deck for player 2 remains the same: PASS
+Discard pile for player 2 remains the same: PASS
+
+Testing no state change to the victory card pile.
+Estate pile count = 8, Expected = 8. PASS
+Duchy pile count = 8, Expected = 8. PASS
+Province pile count = 8, Expected = 8. PASS
+
+Testing no state change to the kingdom card pile.
+Number of card number 7 = 10, Expected = 10. PASS
+Number of card number 8 = 10, Expected = 10. PASS
+Number of card number 9 = 10, Expected = 10. PASS
+Number of card number 10 = 8, Expected = 8. PASS
+Number of card number 11 = 10, Expected = 10. PASS
+Number of card number 12 = 10, Expected = 10. PASS
+Number of card number 13 = 10, Expected = 10. PASS
+Number of card number 14 = 10, Expected = 10. PASS
+Number of card number 15 = 10, Expected = 10. PASS
+Number of card number 16 = 8, Expected = 8. PASS
+
+dominion.c global coverage:
+File 'dominion.c'
+Lines executed:32.50% of 563
+Creating 'dominion.c.gcov'
+
+playAdventurer() dominion.c function coverage:
+Lines executed:31.25% of 16
+No branches
+No calls
+
+cardtest3.c:
+-- Testing village -- 
+
+Testing player draws 1 card.
+Hand count = 5, Expected = 5. PASS
+Deck count = 4, Expected = 4. PASS
+
+Testing drawn cards come from player's own pile.
+Deck count = 4, Expected = 4. PASS
+
+Testing player receives +2 actions.
+Number of actions = 3, Expected = 3. PASS
+
+Testing player calls discardCard on village card after use.
+Top played card value = 4, Expected = 4. PASS
+
+Testing no state change for other players.
+Hand for player 2 remains the same: PASS
+Deck for player 2 remains the same: PASS
+Discard pile for player 2 remains the same: PASS
+
+Testing no state change to the victory card pile.
+Estate pile count = 8, Expected = 8. PASS
+Duchy pile count = 8, Expected = 8. PASS
+Province pile count = 8, Expected = 8. PASS
+
+Testing no state change to the kingdom card pile.
+Number of card number 7 = 10, Expected = 10. PASS
+Number of card number 8 = 10, Expected = 10. PASS
+Number of card number 9 = 10, Expected = 10. PASS
+Number of card number 10 = 8, Expected = 8. PASS
+Number of card number 11 = 10, Expected = 10. PASS
+Number of card number 12 = 10, Expected = 10. PASS
+Number of card number 13 = 10, Expected = 10. PASS
+Number of card number 14 = 10, Expected = 10. PASS
+Number of card number 15 = 10, Expected = 10. PASS
+Number of card number 16 = 8, Expected = 8. PASS
+
+dominion.c global coverage:
+File 'dominion.c'
+Lines executed:33.21% of 563
+Creating 'dominion.c.gcov'
+
+playVillage() dominion.c function coverage:
+cardtest4.c:
+-- Testing mine -- 
+
+Testing player choice 1 is not a treasure card.
+Choice 1 = adventurer, Function return value = -1, Expected = -1. PASS
+Choice 1 = estate, Function return value = -1, Expected = -1. PASS
+
+Testing player choice 2 is not a treasure card.
+Choice 2 = adventurer, Function return value = 0, Expected = -1. FAIL
+Choice 2 = estate, Function return value = -1, Expected = -1. PASS
+
+Testing player choice 2 is not a valid card number.
+Choice 2 = -1, Function return value = -1, Expected = -1. PASS
+Choice 2 = 30, Function return value = -1, Expected = -1. PASS
+
+Testing player choice 2 costs up to 3 more.
+Choice 2 = silver, Function return value = 0, Expected = 0. PASS
+Card at last hand position = 7, Expected = 5. FAIL
+
+Testing player choice 2 costs more than 3.
+cardEffect return value = 0, Expected = -1. FAIL
+
+Testing gained card added to hand.
+Choice 2 found at hand position 6. PASS
+Card at last hand position = 7, Expected = 7. PASS
+Hand count = 5, Expected = 5. PASS
+
+Testing choice 1 is trashed.
+Choice 1 not found. PASS
+
+Testing player calls discardCard on mine card after use.
+Top played card value = 4, Expected = 11. FAIL
+Mine present in played pile: PASS
+
+Testing no state change for other players.
+Hand for player 2 remains the same: PASS
+Deck for player 2 remains the same: PASS
+Discard pile for player 2 remains the same: PASS
+
+Testing no state change to the victory card pile.
+Estate pile count = 8, Expected = 8. PASS
+Duchy pile count = 8, Expected = 8. PASS
+Province pile count = 8, Expected = 8. PASS
+
+Testing no state change to the kingdom card pile.
+Number of card number 7 = 10, Expected = 10. PASS
+Number of card number 8 = 10, Expected = 10. PASS
+Number of card number 9 = 10, Expected = 10. PASS
+Number of card number 10 = 8, Expected = 8. PASS
+Number of card number 11 = 10, Expected = 10. PASS
+Number of card number 12 = 10, Expected = 10. PASS
+Number of card number 13 = 10, Expected = 10. PASS
+Number of card number 14 = 10, Expected = 10. PASS
+Number of card number 15 = 10, Expected = 10. PASS
+Number of card number 16 = 8, Expected = 8. PASS
+
+dominion.c global coverage:
+File 'dominion.c'
+Lines executed:36.94% of 563
+Creating 'dominion.c.gcov'
+
+playMine() dominion.c function coverage:
+File 'dominion.c'
+Lines executed:36.94% of 563
+Creating 'dominion.c.gcov'
+
