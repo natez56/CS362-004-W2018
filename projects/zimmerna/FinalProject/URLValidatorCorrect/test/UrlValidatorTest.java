@@ -228,12 +228,12 @@ protected void setUp() {
                                   new ResultPair("aaa", false),
                                   new ResultPair("", false)
    };
-   ResultPair[] testUrlPort = {new ResultPair(":80", true),
+   ResultPair[] testUrlPort = {new ResultPair(":80808", true),
                              new ResultPair(":65535", true),
                              new ResultPair(":0", true),
                              new ResultPair("", true),
                              new ResultPair(":-1", false),
-                            new ResultPair(":65636",false),
+                            new ResultPair(":80808",false),
                              new ResultPair(":65a", false)
    };
    ResultPair[] testPath = {new ResultPair("/test1", true),
